@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Darman Security - Atlanta's Premier Security Systems</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600&family=SF+Pro+Text:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      color: #fff;
+      background-color: #000;
+      overflow-x: hidden;
+      perspective: 1000px;
+    }
+    
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 1000;
+      padding: 15px 0;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+    
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+    
+    .logo {
+      font-size: 24px;
+      font-weight: 600;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: -0.5px;
+      position: relative;
+      padding-left: 40px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 30px;
+      height: 30px;
+      background-color: #0071e3;
+      border-radius: 8px;
+      background-image: url('assets/images/logo-icon.svg');
+      background-size: 60%;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+    
+    .nav-links a {
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 500;
+      font-size: 16px;
+      transition: color 0.3s ease;
+      position: relative;
+      padding: 5px 0;
+    }
+    
+    .nav-links a:hover {
+      color: #fff;
+    }
+    
+    .nav-links a.active {
+      color: #fff;
+    }
+    
+    .nav-links a.active:after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #0071e3;
+      border-radius: 1px;
+    }
+    
+    .cta-button {
+      background-color: #0071e3;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-weight: 500;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+    
+    .cta-button:hover {
+      background-color: #0077ED;
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(0, 113, 227, 0.4);
+    }
+    
+    /* Mobile menu button */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    
+    /* Responsive navigation */
+    @media (max-width: 992px) {
+      .nav-links {
+        gap: 20px;
+      }
+      
+      .logo {
+        font-size: 20px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.95);
+        padding: 20px;
+        gap: 15px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      
+      .nav-links.active {
+        display: flex;
+      }
+      
+      .menu-toggle {
+        display: block;
+      }
+      
+      .cta-button {
+        padding: 10px 20px;
+        font-size: 14px;
+      }
+      
+      .logo {
+        font-size: 18px;
+        padding-left: 35px;
+      }
+      
+      .logo:before {
+        width: 25px;
+        height: 25px;
+      }
+    }
+    
+    /* Hero Section */
+    #hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+      padding: 0 20px;
+      z-index: 2;
+    }
+    
+    .hero-content h1 {
+      font-size: 64px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 1s forwards 0.5s;
+    }
+    
+    .hero-content h2 {
+      font-size: 28px;
+      font-weight: 400;
+      margin-bottom: 40px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 1s forwards 0.8s;
+    }
+    
+    .hero-content .cta-button {
+      padding: 15px 30px;
+      font-size: 18px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 1s forwards 1.1s;
+    }
+    
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      animation: fadeIn 1s forwards 1.5s, bounce 2s infinite 1.5s;
+    }
+    
+    .scroll-indicator svg {
+      width: 30px;
+      height: 30px;
+      fill: #fff;
+    }
+    
+    /* 3D Scroll Sections */
+    .scroll-container {
+      position: relative;
+      height: 300vh;
+      perspective: 1000px;
+      transform-style: preserve-3d;
+    }
+    
+    .scroll-section {
+      height: 100vh;
+      width: 100%;
+      position: sticky;
+      top: 0;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .parallax-layer {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      will-change: transform;
+      transform-style: preserve-3d;
+    }
+    
+    .bg-layer {
+      background-size: cover;
+      background-position: center;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+    
+    .content-container {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 10;
+    }
+    
+    /* 3D Sections */
+    .product-showcase {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1200px;
+      perspective: 1000px;
+      transform-style: preserve-3d;
+    }
+    
+    .product-card {
+      flex: 1;
+      height: 500px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      transform-style: preserve-3d;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+      margin: 0 15px;
+      transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    
+    .product-card:hover {
+      transform: translateY(-20px) rotateX(5deg);
+    }
+    
+    .product-image {
+      width: 100%;
+      height: 60%;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+    
+    .product-card:hover .product-image img {
+      transform: scale(1.05);
+    }
+    
+    .product-info {
+      padding: 25px;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.9));
+      height: 40%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    
+    .product-info h3 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    
+    .product-info p {
+      font-size: 16px;
+      opacity: 0.8;
+      line-height: 1.5;
+    }
+    
+    /* Text Animation Section */
+    .text-animation-section {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .text-reveal-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+    }
+    
+    .reveal-text {
+      font-size: 180px;
+      font-weight: 700;
+      color: #fff;
+      opacity: 0;
+      transform: translateY(100px);
+      text-align: center;
+      background: linear-gradient(90deg, #0071e3, #00c6ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    /* 3D Camera Animation */
+    .camera-animation {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      height: 500px;
+      margin: 0 auto;
+      perspective: 2000px;
+      transform-style: preserve-3d;
+    }
+    
+    .camera-frame {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotateY(0deg) rotateX(0deg);
+      transform-style: preserve-3d;
+      transition: transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    
+    .camera-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+    
+    .camera-front {
+      transform: translateZ(200px);
+    }
+    
+    .camera-back {
+      transform: rotateY(180deg) translateZ(200px);
+    }
+    
+    .camera-left {
+      transform: rotateY(-90deg) translateZ(200px);
+    }
+    
+    .camera-right {
+      transform: rotateY(90deg) translateZ(200px);
+    }
+    
+    .camera-top {
+      transform: rotateX(90deg) translateZ(200px);
+    }
+    
+    .camera-bottom {
+      transform: rotateX(-90deg) translateZ(200px);
+    }
+    
+    /* Background elements */
+    .bg-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      opacity: 0.6;
+    }
+    
+    .bg-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(0,0,0,0.2), rgba(0,0,0,0.8));
+      z-index: 0;
+    }
+    
+    /* Keyframes Animations */
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeIn {
+      to {
+        opacity: 0.7;
+      }
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+      }
+      40% {
+        transform: translateX(-50%) translateY(-20px);
+      }
+      60% {
+        transform: translateX(-50%) translateY(-10px);
+      }
+    }
+    
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+      .hero-content h1 {
+        font-size: 48px;
+      }
+      
+      .hero-content h2 {
+        font-size: 24px;
+      }
+      
+      .product-showcase {
+        flex-direction: column;
+        gap: 30px;
+      }
+      
+      .product-card {
+        width: 100%;
+        margin: 15px 0;
+      }
+      
+      .reveal-text {
+        font-size: 100px;
+      }
+      
+      .camera-frame {
+        width: 300px;
+        height: 300px;
+      }
+      
+      .camera-face {
+        transform: translateZ(150px);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 36px;
+      }
+      
+      .hero-content h2 {
+        font-size: 20px;
+      }
+      
+      .reveal-text {
+        font-size: 60px;
+      }
+      
+      .camera-frame {
+        width: 250px;
+        height: 250px;
+      }
+    }
+
+    /* Features Section */
+    .features-section {
+      padding: 100px 0;
+      background: #000;
+      position: relative;
+    }
+
+    .features-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .features-header h2 {
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: #fff;
+    }
+
+    .features-header p {
+      font-size: 20px;
+      color: #0071e3;
+      font-weight: 500;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      background: #111;
+      border-radius: 12px;
+      padding: 30px;
+      transition: all 0.3s ease;
+      border: 1px solid #222;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 113, 227, 0.2);
+      border-color: #0071e3;
+    }
+
+    .feature-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 12px;
+      background: #0071e3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .feature-icon i {
+      font-size: 28px;
+      color: white;
+    }
+
+    .feature-card h3 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #fff;
+      line-height: 1.3;
+    }
+
+    .feature-card p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #aaa;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    .feature-link {
+      color: #0071e3;
+      text-decoration: none;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      margin-top: auto;
+      transition: all 0.3s ease;
+    }
+
+    .feature-link i {
+      margin-left: 8px;
+      transition: transform 0.3s ease;
+    }
+
+    .feature-link:hover {
+      color: #00a2ff;
+    }
+
+    .feature-link:hover i {
+      transform: translateX(5px);
+    }
+
+    .features-cta {
+      text-align: center;
+      margin-top: 80px;
+      padding: 50px;
+      background: linear-gradient(to right, #001428, #002952);
+      border-radius: 16px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .features-cta h3 {
+      font-size: 32px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #fff;
+    }
+
+    .features-cta p {
+      font-size: 18px;
+      color: #ccc;
+      margin-bottom: 30px;
+    }
+
+    .features-cta .cta-button {
+      background-color: #0071e3;
+      color: white;
+      border: none;
+      padding: 16px 32px;
+      border-radius: 30px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .features-cta .cta-button i {
+      margin-left: 10px;
+    }
+
+    .features-cta .cta-button:hover {
+      background-color: #0077ED;
+      transform: scale(1.05);
+    }
+
+    /* Responsive adjustments for features section */
+    @media (max-width: 992px) {
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .features-header h2 {
+        font-size: 36px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .features-section {
+        padding: 70px 0;
+      }
+      
+      .features-header h2 {
+        font-size: 30px;
+      }
+      
+      .features-cta {
+        padding: 30px 20px;
+      }
+    }
+
+    /* Intro Section */
+    .intro-section {
+      padding: 120px 0;
+      background: linear-gradient(135deg, #001a33 0%, #002952 100%);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .intro-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('assets/images/pattern-overlay.png');
+      opacity: 0.05;
+      z-index: 1;
+    }
+
+    .intro-section .container {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section-title {
+      font-size: 48px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, #0071e3, #00a2ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+    }
+
+    .section-subtitle {
+      font-size: 22px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .intro-section {
+        padding: 80px 0;
+      }
+      
+      .section-title {
+        font-size: 36px;
+      }
+      
+      .section-subtitle {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="logo">Darman Security Systems</a>
+      <div class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="products.html">Products</a>
+        <a href="solutions.html">Solutions</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <button class="cta-button">Get a Quote</button>
+    </div>
+  </nav>
+
+  <section id="hero">
+    <div class="bg-overlay"></div>
+    <video class="bg-video" autoplay muted loop>
+      <source src="assets/videos/security-bg.mp4" type="video/mp4">
+    </video>
+    <div class="hero-content">
+      <h1>Security. Reimagined.</h1>
+      <h2>Advanced protection systems for the modern world.</h2>
+      <button class="cta-button">Discover Our Solutions</button>
+    </div>
+    <div class="scroll-indicator">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+      </svg>
+    </div>
+  </section>
+
+  <section class="intro-section">
+    <div class="container">
+      <h2 class="section-title">Protecting what matters most.</h2>
+      <p class="section-subtitle">For over 15 years, Darman Security has been Atlanta's premier provider of cutting-edge camera security systems.</p>
+    </div>
+  </section>
+
+  <section class="features-section">
+    <div class="container">
+      <div class="features-header">
+        <h2>Security Solutions That Deliver Real Results</h2>
+        <p>Our customers experience 94% fewer security incidents within the first year</p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3>Prevent Break-ins Before They Happen</h3>
+          <p>Our AI detection system alerts you to suspicious activity before criminals can act, reducing break-ins by 87%.</p>
+          <a href="products.html" class="feature-link">See how it works <i class="fas fa-arrow-right"></i></a>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <h3>Monitor Your Property Anytime, Anywhere</h3>
+          <p>Get instant alerts and HD video feeds directly to your phone. 98% of our customers report increased peace of mind.</p>
+          <a href="products.html" class="feature-link">View demo <i class="fas fa-arrow-right"></i></a>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-brain"></i>
+          </div>
+          <h3>Smart Detection That Actually Works</h3>
+          <p>Unlike competitors, our AI distinguishes between pets, people, and threats with 99.7% accuracy, eliminating false alarms.</p>
+          <a href="products.html" class="feature-link">Compare systems <i class="fas fa-arrow-right"></i></a>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-lock"></i>
+          </div>
+          <h3>Unhackable Security Feed</h3>
+          <p>Military-grade encryption keeps your footage private. We've never had a single data breach in our 15-year history.</p>
+          <a href="products.html" class="feature-link">Learn about our security <i class="fas fa-arrow-right"></i></a>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <h3>Expert Installation in Under 4 Hours</h3>
+          <p>Our certified technicians handle everything. Most systems are up and running the same day with zero hassle for you.</p>
+          <a href="contact.html" class="feature-link">Schedule installation <i class="fas fa-arrow-right"></i></a>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-headset"></i>
+          </div>
+          <h3>24/7 Live Support, 3-Minute Response Time</h3>
+          <p>Our Atlanta-based team responds in minutes, not hours. 97% of issues resolved on the first call.</p>
+          <a href="contact.html" class="feature-link">Contact support <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      
+      <div class="features-cta">
+        <h3>Ready to secure your property?</h3>
+        <p>Get a free security assessment and custom quote today.</p>
+        <a href="contact.html" class="cta-button">Get Free Quote <i class="fas fa-chevron-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonial-section">
+    <div class="container">
+      <blockquote>
+        <p>"Darman Security transformed how we protect our business. Their systems are elegant, powerful, and incredibly easy to use."</p>
+        <cite>— Michael Chen, Atlanta Business Owner</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="atlanta-section">
+    <div class="container">
+      <div class="section-content">
+        <h2>Atlanta's trusted security partner since 2009.</h2>
+        <p>From residential installations to complex commercial security solutions, we've protected thousands of properties across the greater Atlanta metropolitan area.</p>
+        <p>Our commitment to excellence and customer satisfaction has made us a trusted name in the security industry. With our experienced team of security professionals, we deliver customized solutions that meet your specific needs.</p>
+        <a href="contact.html" class="btn btn-secondary">Contact us <i class="fas fa-chevron-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-info">
+          <h3>Darman</h3>
+          <p>1234 Security Ave<br>Atlanta, GA 30303</p>
+        </div>
+        <div class="footer-links">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <p>Questions? <a href="tel:4045550123">(404) 555-0123</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Copyright © 2024 Darman Security. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
+                
