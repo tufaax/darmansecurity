@@ -805,6 +805,117 @@
         font-size: 18px;
       }
     }
+
+    /* Footer */
+    footer {
+      background-color: #111;
+      padding: 80px 0 40px;
+      margin-top: 80px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-info h3 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    .footer-info p {
+      color: #aaa;
+      line-height: 1.6;
+    }
+
+    .footer-links h4 {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: #aaa;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: #0071e3;
+    }
+
+    .footer-contact h4 {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    .footer-contact p {
+      color: #aaa;
+      margin-bottom: 10px;
+    }
+
+    .footer-contact a {
+      color: #0071e3;
+      text-decoration: none;
+    }
+
+    .footer-bottom {
+      padding-top: 30px;
+      border-top: 1px solid #222;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-bottom p {
+      color: #777;
+    }
+
+    .footer-legal {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-legal a {
+      color: #777;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-legal a:hover {
+      color: #0071e3;
+    }
+
+    @media (max-width: 992px) {
+      .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-bottom {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+      }
+    }
   </style>
 </head>
 <body>
@@ -819,6 +930,9 @@
         <a href="contact.html">Contact</a>
       </div>
       <button class="cta-button">Get a Quote</button>
+      <button class="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </button>
     </div>
   </nav>
 
@@ -937,33 +1051,54 @@
     </div>
   </section>
 
-  <footer class="main-footer">
+  <footer>
     <div class="container">
       <div class="footer-content">
         <div class="footer-info">
-          <h3>Darman</h3>
-          <p>1234 Security Ave<br>Atlanta, GA 30303</p>
+          <h3>Darman Security Systems</h3>
+          <p>Atlanta's premier provider of cutting-edge security solutions since 2009. We're committed to protecting what matters most to you.</p>
         </div>
         <div class="footer-links">
+          <h4>Products</h4>
           <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="products.html">Products</a></li>
+            <li><a href="#">Home Security</a></li>
+            <li><a href="#">Business Security</a></li>
+            <li><a href="#">Smart Cameras</a></li>
+            <li><a href="#">Access Control</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Blog</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
         <div class="footer-contact">
-          <p>Questions? <a href="tel:4045550123">(404) 555-0123</a></p>
+          <h4>Contact Us</h4>
+          <p>1234 Security Ave<br>Atlanta, GA 30303</p>
+          <p>Phone: <a href="tel:4045550123">(404) 555-0123</a></p>
+          <p>Email: <a href="mailto:info@darmansecurity.com">info@darmansecurity.com</a></p>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>Copyright © 2024 Darman Security. All rights reserved.</p>
+        <p>Copyright © 2024 Darman Security Systems. All rights reserved.</p>
         <div class="footer-legal">
           <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Use</a>
+          <a href="#">Terms of Service</a>
         </div>
       </div>
     </div>
   </footer>
+
+  <script>
+    // Mobile menu toggle
+    document.querySelector('.menu-toggle').addEventListener('click', function() {
+      document.querySelector('.nav-links').classList.toggle('active');
+    });
+  </script>
 </body>
 </html>
                 
